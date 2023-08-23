@@ -8,82 +8,31 @@ import SmallCard from "@/components/SmallCard";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-export default function Home(props) {
-  const data = [
-    {
-      img: "https://links.papareact.com/5j2",
-      location: "London",
-      distance: "45-minute drive",
-    },
-    {
-      img: "https://links.papareact.com/1to",
-      location: "Manchester",
-      distance: "4.5-hour drive",
-    },
-    {
-      img: "https://links.papareact.com/40m",
-      location: "Liverpool",
-      distance: "4.5-hour drive",
-    },
-    {
-      img: "https://links.papareact.com/msp",
-      location: "York",
-      distance: "4-hour drive",
-    },
-    {
-      img: "https://links.papareact.com/2k3",
-      location: "Cardiff",
-      distance: "45-minute drive",
-    },
-    {
-      img: "https://links.papareact.com/ynx",
-      location: "Birkenhead",
-      distance: "4.5-hour drive",
-    },
-    {
-      img: "https://links.papareact.com/kji",
-      location: "Newquay",
-      distance: "6-hour drive",
-    },
-    {
-      img: "https://links.papareact.com/41m",
-      location: "Hove",
-      distance: "2-hour drive",
-    },
-  ];
-  const cardsData = [
-    {
-      img: "https://links.papareact.com/2io",
-      title: "Outdoor getaways",
-    },
-    {
-      img: "https://links.papareact.com/q7j",
-      title: "Unique stays",
-    },
-    {
-      img: "https://links.papareact.com/s03",
-      title: "Entire homes",
-    },
-    {
-      img: "https://links.papareact.com/8ix",
-      title: "Pet allowed",
-    },
-  ];
-  // useEffect(() => {
-  //   // cardsData();
-  //   axios.get("https://jsonplaceholder.typicode.com/posts/1")
-  //   .then((res) => {
-  //     console.log(res, 'asfasfas')
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
-  // }, []);
-  // const cardsData = async () => {
-  //   const res = await fetch("https://links.papareact.com/zp1");
-  //   const data = await res.json();
-  //   console.log(data);
-  // };
+export default function Home() {
+  const [data, setData] = useState([]);
+  const [cardsData, setCardData] = useState([]);
+
+  useEffect(  () => {
+     getData()
+     getCardsData()
+  }, []);
+  const getData = async () => {
+    const res = await fetch(
+      "https://mocki.io/v1/8c3d7b3d-655e-4b83-b26f-8845a7737552"
+    )
+    const result = await res.json()
+    // return res.json();
+    setData(result)
+  };
+
+  const getCardsData = async () => {
+    const res = await fetch(
+      "https://mocki.io/v1/2affef1c-cb65-4fcc-9375-fb9f79dbad9a"
+    );
+    setCardData(await res.json())
+  };
+  // const data = await getData();
+  // const cardsData = await getCardsData();
 
   return (
     <div className="bg-white">
@@ -114,14 +63,14 @@ export default function Home(props) {
         </section>
 
         <LargeCard
-          img='https://links.papareact.com/4cj'
-          title='The Greatest Outdoors'
-          description='Wishlist curated by Airbnb.'
-          buttonText='Get Inspired'
+          img="https://links.papareact.com/4cj"
+          title="The Greatest Outdoors"
+          description="Wishlist curated by Airbnb."
+          buttonText="Get Inspired"
         />
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 }
